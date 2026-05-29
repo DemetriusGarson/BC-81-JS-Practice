@@ -23,17 +23,26 @@
 //   return uniqeItems;
 // }
 
-//! ??
-// console.log(unique([1, 2, 2, 3, 3, 3]));
+//! мой вариант
+// console.log(unique([1, 2, 2, 3, 3, 3, 4, 1, 2, 3]));
 // function unique(array) {
-//     const copyArray = array.slice()
-//     const uniqueArray = [];
+//   const copyArray = array.slice();
+//   const uniqueArray = [];
 
-//     // uniqueArray[0] = array[0]
+//   uniqueArray[0] = array[0];
+//   let counter = 0;
 
-//     for (let i = 0; i <= array.length; i++){
-//         for(let k =)
+//   for (let i = 1; i < array.length; i++) {
+//     counter = 0;
+//     for (let k = 0; k < uniqueArray.length; k++) {
+//       if (array[i] === uniqueArray[k]) {
+//         counter += 1;
+//       }
 //     }
+//     if (counter === 0) {
+//       uniqueArray.push(array[i]);
+//     }
+//   }
 //   return uniqueArray;
 // }
 
@@ -120,3 +129,225 @@
 //     return argSum / count;
 // }
 // console.log(caclculateAverage(5, 10, 15, 'Hello'));
+
+// ! ==============MODULE_3 TASK_6
+//* Напиши функцію intersection(arr1, arr2), яка повертає масив елементів які є в обох масивах. Наприклад: [1, 2, 3] і [2, 3, 4] → [2, 3].
+
+// console.log(intersection([1, 2, 3], [2, 3, 4]));
+// function intersection(arr1, arr2) {
+//   const resultArray = [];
+//   for (let i = 0; i < arr1.length; i++) {
+//     for (let k = 0; k < arr2.length; k++) {
+//       if (arr2[k] === arr1[i]) {
+//         resultArray.push(arr2[k]);
+//       }
+//     }
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_7
+//* Напиши функцію getOdd(arr), яка повертає новий масив тільки з непарними числами.
+
+// console.log(getOdd([1, 2, 3, 10, 50, 49]));
+
+// function getOdd(numbers) {
+//   const resultArray = [];
+//   for (const number of numbers) {
+//     if (number % 2 !== 0) {
+//       resultArray.push(number);
+//     }
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_8
+//* Напиши функцію multiplyAll(arr, n), яка повертає новий масив де кожен елемент помножений на n.
+
+// console.log(multiplyAll([1, 2, 3, 10, 50, 49], 3));
+
+// function multiplyAll(numbers, multiplayer) {
+//   const resultArray = [];
+//   for (const number of numbers) {
+//     resultArray.push(number * multiplayer);
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_9
+//* Напиши функцію moveTo(arr, value, position), яка переміщує всі входження value або на початок ("start") або в кінець ("end") масиву не змінюючи порядок решти елементів.
+// ! ??
+// console.log(moveTo([1, 2, 3, 10, 3, 50, 49], 3, 'start'));
+
+// function moveTo(arr, value, position) {
+//   const resultArray = [];
+//   let index = arr.indexOf(value);
+
+//   if (position === 'start') {
+//     resultArray.push(
+//       arr[arr.indexOf(value)],
+//       ...arr.slice(0, arr.indexOf(value)),
+//       ...arr.slice(arr.indexOf(value) + 1)
+//     );
+//   }
+//   if (position === 'end') {
+//     resultArray.push(
+//       ...arr.slice(0, arr.indexOf(value)),
+//       ...arr.slice(arr.indexOf(value) + 1),
+//       arr[arr.indexOf(value)]
+//     );
+//   }
+
+//   return resultArray;
+// }
+// variant 2
+// function moveTo(arr, value, position) {
+//   let result = [];
+
+//   if (position === 'start') {
+//     for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] === value) {
+//         result.push(arr[i]);
+//       }
+//     }
+
+//     for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] !== value) {
+//         result.push(arr[i]);
+//       }
+//     }
+//   } else {
+//     for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] !== value) {
+//         result.push(arr[i]);
+//       }
+//     }
+
+//     for (let i = 0; i < arr.length; i++) {
+//       if (arr[i] === value) {
+//         result.push(arr[i]);
+//       }
+//     }
+//   }
+
+//   return result;
+// }
+//  variant 3
+// function moveTo(arr, value, position) {
+//   const targets = [];
+//   const otherElements = [];
+
+//   for (const item of arr) {
+//     if (item === value) {
+//       targets.push(item);
+//     } else {
+//       otherElements.push(item);
+//     }
+//   }
+
+//   if (position === 'start') {
+//     // return targets.concat(otherElements);
+//     return [...targets, ...otherElements];
+//   }
+//   if (position === 'end') {
+//     return otherElements.concat(targets);
+//   }
+// }
+// console.log(moveTo(['a', 'b', 'a', 'c'], 'a', 'end'));
+// console.log(moveTo(['a', 'b', 'a', 'c'], 'c', 'start'));
+
+// ! ==============MODULE_3 TASK_10
+// * Напиши функцію boardGame(board, moves), яка симулює просту гру. board — масив рядків де "X" — стіна, " " — порожньо, "E" — вихід. moves — масив напрямків "left", "right". Гравець починає з індексу 0. Повертає "Exit" якщо гравець дійшов до виходу, "Wall" якщо врізався в стіну, "Out" якщо вийшов за межі масиву, "Stuck" якщо пройшов всі ходи і не досяг виходу.
+
+// const board = [' ', ' ', 'E', ' ', 'X'];
+// const moves = ['right', 'right', 'right', 'right', 'right'];
+// console.log(boardGame(board, moves));
+
+// function boardGame(board, moves) {
+//   let movementIndex = 0;
+
+//   for (let i = 0; i < moves.length; i++) {
+//     if (moves[i] === 'right') {
+//       movementIndex += 1;
+//     } else {
+//       movementIndex -= 1;
+//     }
+//   }
+
+//   if (movementIndex > board.length - 1 || movementIndex < 0) {
+//     return 'Out';
+//   }
+
+//   if (board[movementIndex] === 'X') {
+//     return 'Wall';
+//   }
+
+//   if (board[movementIndex] === 'E') {
+//     return 'Exit';
+//   }
+//   return 'Stuck';
+// }
+
+// ! ==============MODULE_3 TASK_11
+//* Напиши функцію sumByIndex(arr1, arr2), яка повертає новий масив де кожен елемент — сума елементів з однаковим індексом. Якщо масиви різної довжини — для відсутніх елементів використовуй 0. Наприклад: [1,2,3] і [4,5] → [5,7,3].
+
+// console.log(sumByIndex([1, 2, 3], [4, 5]));
+// function sumByIndex(arr1, arr2) {
+//   const maxLength = arr1.length > arr2.length ? arr1.length : arr2.length;
+//   const resultArray = [];
+//   for (let i = 0; i < maxLength; i++) {
+//     let a = arr1[i] !== undefined ? arr1[i] : 0;
+//     let b = arr2[i] !== undefined ? arr2[i] : 0;
+//     resultArray.push(a + b);
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_12
+//*Напиши функцію replaceNegative(arr), яка замінює всі від'ємні числа на 0 і повертає новий масив.
+
+// console.log(replaceNegative([1, -1, 2, 3, -4]));
+// function replaceNegative(numbers) {
+//   const resultArray = [];
+//   for (let number of numbers) {
+//     if (number < 0) {
+//       resultArray.push(0);
+//     } else {
+//       resultArray.push(number);
+//     }
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_13
+//* Напиши функцію everyOther(arr), яка повертає кожен другий елемент масиву починаючи з першого. Наприклад: [1,2,3,4,5] → [1,3,5].
+
+// console.log(everyOther([1, 2, 3, 4, 5]));
+// function everyOther(arr) {
+//   const resultArray = [];
+//   for (let i = 0; i < arr.length; i += 2) {
+//     resultArray.push(arr[i]);
+//   }
+//   return resultArray;
+// }
+
+// ! ==============MODULE_3 TASK_14
+//* Напиши функцію splitByCondition(arr), яка розбиває масив чисел на два масиви: перший з парними, другий з непарними. Повертає масив з двох масивів.
+
+// console.log(splitByCondition([1, 2, 3, 4, 5]));
+
+// function splitByCondition(arr) {
+//   const evenArray = [];
+//   const oddArray = [];
+//   const resultArray = [];
+
+//   for (let i = 0; i < arr.length; i++) {
+//     if (arr[i] % 2 === 0) {
+//       evenArray.push(arr[i]);
+//     } else {
+//       oddArray.push(arr[i]);
+//     }
+//   }
+//   resultArray.push(evenArray.slice(), oddArray.slice());
+//   return resultArray;
+// }

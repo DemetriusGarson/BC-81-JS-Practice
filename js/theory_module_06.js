@@ -50,52 +50,54 @@
 // console.log(mango.email); // "mango@mail.com"
 // console.log(mango.access); // "superuser"
 
-class User {
-  email;
+//!
 
-  constructor(email) {
-    this.email = email;
-  }
+// class User {
+//   email;
 
-  get email() {
-    return this.email;
-  }
+//   constructor(email) {
+//     this.email = email;
+//   }
 
-  set email(newEmail) {
-    this.email = newEmail;
-  }
-}
-class Admin extends User {
-  static role = {
-    BASIC: 'basic',
-    SUPERUSER: 'superuser',
-  };
+//   get email() {
+//     return this.email;
+//   }
 
-  blacklistedEmails = [];
+//   set email(newEmail) {
+//     this.email = newEmail;
+//   }
+// }
+// class Admin extends User {
+//   static role = {
+//     BASIC: 'basic',
+//     SUPERUSER: 'superuser',
+//   };
 
-  blacklist(email) {
-    this.blacklistedEmails.push(email);
-  }
+//   blacklistedEmails = [];
 
-  isBlacklisted(email) {
-    return this.blacklistedEmails.includes(email);
-  }
+//   blacklist(email) {
+//     this.blacklistedEmails.push(email);
+//   }
 
-  constructor(params) {
-    super(params.email);
-    this.access = params.access;
-  }
-}
+//   isBlacklisted(email) {
+//     return this.blacklistedEmails.includes(email);
+//   }
 
-const mango = new Admin({
-  email: 'mango@mail.com',
-  access: Admin.role.SUPERUSER,
-});
+//   constructor(params) {
+//     super(params.email);
+//     this.access = params.access;
+//   }
+// }
 
-console.log(mango.email); // "mango@mail.com"
-console.log(mango.access); // "superuser"
+// const mango = new Admin({
+//   email: 'mango@mail.com',
+//   access: Admin.role.SUPERUSER,
+// });
 
-mango.blacklist('poly@mail.com');
-console.log(mango.blacklistedEmails); // ["poly@mail.com"]
-console.log(mango.isBlacklisted('mango@mail.com')); // false
-console.log(mango.isBlacklisted('poly@mail.com')); // true
+// console.log(mango.email); // "mango@mail.com"
+// console.log(mango.access); // "superuser"
+
+// mango.blacklist('poly@mail.com');
+// console.log(mango.blacklistedEmails); // ["poly@mail.com"]
+// console.log(mango.isBlacklisted('mango@mail.com')); // false
+// console.log(mango.isBlacklisted('poly@mail.com')); // true
